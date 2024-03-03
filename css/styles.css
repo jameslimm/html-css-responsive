@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --dark-color: rgb(51, 64, 119);
+  --dark-color-shadow: rgb(183, 185, 192);
+}
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Noto Sans", sans-serif;
+}
+
+h1 {
+  text-wrap: balance;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  height: 3rem;
+  position: relative;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* HAMBURGER */
+.hamburger {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  --hamburger-height: calc((8px * 2) + (4px * 3));
+}
+
+.hamburger input {
+  position: absolute;
+  inset: 0 0 0 0;
+  appearance: none;
+  outline: none;
+}
+
+.hamburger div {
+  height: 4px;
+  width: 30px;
+  border-radius: 999px;
+  background-color: rgb(51, 64, 119);
+  transition: all 0.3s ease-in-out;
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.hamburger input:checked ~ div:first-of-type {
+  rotate: 45deg;
+  width: calc(30px * 1.2);
+}
+
+.hamburger input:checked ~ div:nth-of-type(2) {
+  width: 0;
+}
+
+.hamburger input:checked ~ div:last-of-type {
+  rotate: -45deg;
+  width: calc(30px * 1.2);
+}
+
+ul.menu {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 3rem - 4rem);
+  inset: 3rem 0 auto 0;
+  list-style: none;
+  background-color: white;
+  z-index: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.hamburger:has(input:checked) + ul.menu {
+  opacity: 1;
+  pointer-events: all;
+}
+ul.menu li {
+  margin: 1rem;
+  padding: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.5rem;
+  text-shadow: 0 2px 20px rgb(183, 185, 192);
+}
+
+ul.menu a {
+  text-decoration: none;
+  color: rgb(51, 64, 119);
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+}
+footer p {
+  text-wrap: balance;
+  padding: 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+footer p a {
+  text-decoration: none;
+}
+
+.sign-up {
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 50%;
+  width: 75%;
+  box-shadow: 0 0 5px black;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.sign-up button {
+  font: inherit;
+  padding: 0.5rem 2rem;
+  background-color: lightgrey;
+  color: white;
+  text-shadow: 0 0 10px black;
+  border: 0;
+  outline: none;
+  border-radius: 10px;
+}
+
+form input {
+  outline: none;
+  border: 0;
+  box-shadow: 0 0 2px black;
+  padding: 0.25rem;
+  font: inherit;
+  border-radius: 10px;
+}
+form input:valid {
+  box-shadow: 0 0 5px green;
+}
+
+form div {
+  display: flex;
+  margin: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 700px) {
+  .hamburger {
+    display: none;
+  }
+
+  ul.menu {
+    flex-direction: row;
+    opacity: 1;
+    gap: 2rem;
+    pointer-events: all;
+    position: initial;
+    height: fit-content;
+  }
+
+  ul.menu li {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.5rem;
+    text-shadow: 0 2px 20px rgb(183, 185, 192);
+  }
+}
+
+/* EXPANDABLE */
+
+.expandable {
+  width: 80%;
+  margin: 1rem auto 1rem auto;
+  padding: 1rem;
+  border: 1px solid grey;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px darkgray;
+  position: relative;
+}
+
+.expandable input {
+  display: none;
+}
+.expandable label {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+  position: relative;
+}
+
+.expandable label::after {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(135deg);
+  border-width: 3px 3px 0 0;
+  border-style: solid;
+  border-color: black;
+  width: 1rem;
+  height: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.expandable input:checked ~ label::after {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.expandable-content {
+  max-height: 1px;
+  transition: all 0.1s ease-in-out;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.expandable input:checked ~ .expandable-content {
+  max-height: 500px;
+  opacity: 1;
+}
